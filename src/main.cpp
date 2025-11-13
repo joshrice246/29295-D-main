@@ -246,7 +246,7 @@ void ez_template_extras() {
  */
 
 // Use the PROS 'master' controller (defined in main.h)
-float pCurve = 0.7;        // curve for fwd/back
+float pCurve = 0.4;        // curve for fwd/back
 float tCoefficient = 1.4;  // curve for turn
 float tCurve = 0.5;        // coefficient for turn
 double power = 0.0;
