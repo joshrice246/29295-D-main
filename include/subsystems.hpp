@@ -5,8 +5,3 @@
 
 extern Drive chassis;
 extern pros::Motor intake;
-
-// Your motors, sensors, etc. should go here.  Below are examples
-
-//extern inline pros::Motor intake;
-// inline pros::adi::DigitalIn limit_switch('A');

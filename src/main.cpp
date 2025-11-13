@@ -247,8 +247,8 @@ void ez_template_extras() {
 
 // Use the PROS 'master' controller (defined in main.h)
 float pCurve = 0.6;        // curve for fwd/back
-float tCoefficient = 1.2;  // curve for turn
-float tCurve = 0.4;        // coefficient for turn
+float tCoefficient = 1.4;  // curve for turn
+float tCurve = 0.5;        // coefficient for turn
 double power = 0.0;
 double powerC = 0.0;
 double turn = 0.0;
@@ -271,10 +271,10 @@ void opcontrol() {
     turn = master.get_analog(ANALOG_RIGHT_X);  // Right stick horizontal
 
     // Calculating velocity
-    powerC = ((1 - pCurve) * power) + ((pCurve * pow(power, 3)) / 16129);
+    powerC = ((1 - pCurve) * power) + ((pCurve * pow(power, 3)) / 24649);
 
     // Calculating turn curve
-    turnC = tCoefficient * ((1 - tCurve) * turn) + ((tCurve * pow(turn, 3)) / 16129);
+    turnC = tCoefficient * ((1 - tCurve) * turn) + ((tCurve * pow(turn, 3)) / 24649);
 
     // Setting Halfspeed
     if (halfSpeed) {
