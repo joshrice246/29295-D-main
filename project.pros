@@ -425,7 +425,8 @@
     },
     "upload_options": {
       "description": "vroom vroom",
-      "icon": "X"
+      "icon": "X",
+      "slot": 2
     },
     "use_early_access": false
   }

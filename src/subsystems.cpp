@@ -13,37 +13,3 @@ ez::Drive chassis(
 
 pros::Motor intake(7);
 
-void SetDrive(int driveDistance, int driveSpeed, int turnDegrees, int turnSpeed, char driveMeasurment)
-{   
-    #pragma region setup
-    int basicMeasurment = 1; // 1 = inches change later if needed for different measurments
-    int leftPID;
-    int rightPID; 
-    int distance;
-    int turnDistance;
-    int wheelDiamiter = 3.25; // Wheel diameter of robot
-    int botWidth = 24; // Wheel to wheel width of robot
-    #pragma endregion
-
-    distance = driveDistance * basicMeasurment;
-    turnDistance = turnDegrees * botWidth / (2 * wheelDiamiter);
-
-    if (turnDegrees != 0)
-    {
-        leftPID = turnDistance;
-        rightPID = -turnDistance;
-    }
-    else
-    {
-        leftPID = distance;
-        rightPID = distance;
-    }
-
-    for (int i = 10; i > 0; i--)
-    {
-        chassis.drive_set(leftPID * i, rightPID * i);
-    }
-}
-extern ez::PID drivePID;
-void DriveWait();
-void DriveTask();
