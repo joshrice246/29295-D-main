@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include "autons.hpp"
 #include "subsystems.hpp"
 
 /////
@@ -8,17 +8,14 @@
 /////
 
 
-// ez::Drive chassis(
-//     // These are your drive motors, the first motor is used for sensing!
-//     {1, 2, 3},     // Left Chassis Ports (negative port will reverse it!)
-//     {-4, -5, -6},  // Right Chassis Ports (negative port will reverse it!)
+ez::Drive chassis(
+     // These are your drive motors, the first motor is used for sensing!
+     {1, 2, 3},     // Left Chassis Ports (negative port will reverse it!)
+     {-4, -5, -6},  // Right Chassis Ports (negative port will reverse it!)
 
-//     7,      // IMU Port
-//     4.125,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
-//     343);   // Wheel RPM = cartridge * (motor gear / wheel gear)
-
-
-// pros::Motor intake(7);
+     7,      // IMU Port
+     3.25,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
+     450);   // Wheel RPM = cartridge * (motor gear / wheel gear)
 
 // Uncomment the trackers you're using here!
 // - `8` and `9` are smart ports (making these negative will reverse the sensor)
@@ -63,20 +60,7 @@ void initialize() {
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
-      {"Drive\n\nDrive forward and come back", drive_example},
-      {"Turn\n\nTurn 3 times.", turn_example},
-      {"Drive and Turn\n\nDrive forward, turn, come back", drive_and_turn},
-      {"Drive and Turn\n\nSlow down during drive", wait_until_change_speed},
-      {"Swing Turn\n\nSwing in an 'S' curve", swing_example},
-      {"Motion Chaining\n\nDrive forward, turn, and come back, but blend everything together :D", motion_chaining},
-      {"Combine all 3 movements", combining_movements},
-      {"Interference\n\nAfter driving forward, robot performs differently if interfered or not", interfered_example},
-      {"Simple Odom\n\nThis is the same as the drive example, but it uses odom instead!", odom_drive_example},
-      {"Pure Pursuit\n\nGo to (0, 30) and pass through (6, 10) on the way.  Come back to (0, 0)", odom_pure_pursuit_example},
-      {"Pure Pursuit Wait Until\n\nGo to (24, 24) but start running an intake once the robot passes (12, 24)", odom_pure_pursuit_wait_until_example},
-      {"Boomerang\n\nGo to (0, 24, 45) then come back to (0, 0, 0)", odom_boomerang_example},
-      {"Boomerang Pure Pursuit\n\nGo to (0, 24, 45) on the way to (24, 24) then come back to (0, 0, 0)", odom_boomerang_injected_pure_pursuit_example},
-      {"Measure Offsets\n\nThis will turn the robot a bunch of times and calculate your offsets for your tracking wheels.", measure_offsets},
+    Auton("drive example", drive_example),
   });
 
   // Initialize chassis and auton selector
@@ -123,26 +107,21 @@ void competition_initialize() {
  * from where it left off.
  */
 void autonomous() {
-  chassis.pid_targets_reset();                // Resets PID targets to 0
-  chassis.drive_imu_reset();                  // Reset gyro position to 0
-  chassis.drive_sensor_reset();               // Reset drive sensors to 0
-  chassis.odom_xyt_set(0_in, 0_in, 0_deg);    // Set the current position, you can start at a specific position with this
-  chassis.drive_brake_set(MOTOR_BRAKE_HOLD);  // Set motors to hold.  This helps autonomous consistency
+  // DIAGNOSTIC: raw-drive sanity test (temporary)
+  chassis.drive_brake_set(MOTOR_BRAKE_COAST);
+  chassis.drive_set(127, 127); // full forward
+  pros::delay(1500);          // run 1.5s
+  chassis.drive_set(0, 0);
+  pros::delay(200);
 
-  /*
-  Odometry and Pure Pursuit are not magic
+  // Normal auton after test
+  chassis.pid_targets_reset();
+  chassis.drive_imu_reset();
+  chassis.drive_sensor_reset();
+  chassis.odom_xyt_set(0_in, 0_in, 0_deg);
+  chassis.drive_brake_set(MOTOR_BRAKE_HOLD);
 
-  It is possible to get perfectly consistent results without tracking wheels,
-  but it is also possible to have extremely inconsistent results without tracking wheels.
-  When you don't use tracking wheels, you need to:
-   - avoid wheel slip
-   - avoid wheelies
-   - avoid throwing momentum around (super harsh turns, like in the example below)
-  You can do cool curved motions, but you have to give your robot the best chance
-  to be consistent
-  */
-
-  ez::as::auton_selector.selected_auton_call();  // Calls selected auton from autonomous selector
+  ez::as::auton_selector.selected_auton_call();
 }
 
 /**
