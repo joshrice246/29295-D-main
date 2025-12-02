@@ -8,8 +8,8 @@ ez::Drive chassis(
 
     7,      // IMU Port
     3.25,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
-    343);   // Wheel RPM = cartridge * (motor gear / wheel gear)
+    450);   // Wheel RPM = cartridge * (motor gear / wheel gear)
 
 
 pros::Motor intake(7);
-
+pros::Motor scorer(8);

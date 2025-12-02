@@ -104,7 +104,11 @@ void disabled() {
  * starts.
  */
 void competition_initialize() {
-  // . . .
+    if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
+  ez::as::page_down();
+  } else if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
+  ez::as::page_up();
+  }
 }
 
 /**
@@ -293,11 +297,35 @@ void opcontrol() {
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
       intake.move(127);
     }
-    else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+    else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
       intake.move(-127);
     }
     else {
-      intake.move(0);
+      double speed = intake.get_actual_velocity();
+      if (speed > 5 || speed < -5){
+        intake.move(-speed * 0.1);
+      }
+      else {
+        intake.move(0);
+      }
+    }
+    #pragma endregion
+
+    #pragma region Scorer
+    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+      scorer.move(127);
+    }
+    else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+      scorer.move(-127);
+    }
+    else {
+      double speed = scorer.get_actual_velocity();
+      if (speed > 5 || speed < -5){
+        scorer.move(-speed * 0.1);
+      }
+      else {
+        scorer.move(0);
+      }
     }
     #pragma endregion
     

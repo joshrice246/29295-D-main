@@ -5,4 +5,4 @@
 
 extern Drive chassis;
 extern pros::Motor intake;
-
+extern pros::Motor scorer;
