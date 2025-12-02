@@ -13,6 +13,6 @@ ez::Drive chassis(
 
 pros::Motor intake(7);
 
-pros::Motor belt(9);
+pros::Motor belt(8);
 
 
