@@ -4,8 +4,8 @@ this is team 29295 D's main code for vex pushback
 feel free to fork or use as reference 
 
 specs:
-rpm 450
-wheel diameter 3.25
+rpm 450, 
+wheel diameter 3.25, 
 gear ratio 36x48
 
 coded by josh and ewan
