@@ -13,3 +13,4 @@ ez::Drive chassis(
 
 pros::Motor intake(7);
 pros::Motor scorer(8);
+//pros::adi::Pneumatics wing_mech('A');

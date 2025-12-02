@@ -52,3 +52,13 @@ void default_constants() {
 // . . .
 // Make your own autonomous functions here!
 // . . .
+
+void skillz_aut()
+{
+
+}
+
+void comp_aut()
+{
+  
+}
