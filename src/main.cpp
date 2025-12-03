@@ -7,7 +7,7 @@
 // https://ez-robotics.github.io/EZ-Template/
 /////
 
-
+/*
 ez::Drive chassis(
      // These are your drive motors, the first motor is used for sensing!
      {1, 2, 3},     // Left Chassis Ports (negative port will reverse it!)
@@ -16,7 +16,7 @@ ez::Drive chassis(
      7,      // IMU Port
      3.25,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
      450);   // Wheel RPM = cartridge * (motor gear / wheel gear)
-
+*/
 // Uncomment the trackers you're using here!
 // - `8` and `9` are smart ports (making these negative will reverse the sensor)
 //  - you should get positive values on the encoders going FORWARD and RIGHT
@@ -60,7 +60,7 @@ void initialize() {
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
-    Auton("drive example", drive_example),
+    Auton("drive example", please),
   });
 
   // Initialize chassis and auton selector
@@ -110,7 +110,7 @@ void autonomous() {
   // DIAGNOSTIC: raw-drive sanity test (temporary)
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
   chassis.drive_set(127, 127); // full forward
-  pros::delay(1500);          // run 1.5s
+  pros::delay(100);          // run 0.1s
   chassis.drive_set(0, 0);
   pros::delay(200);
 
