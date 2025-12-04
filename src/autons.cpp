@@ -49,6 +49,13 @@ void default_constants() {
   chassis.pid_angle_behavior_set(ez::shortest);  // Changes the default behavior for turning, this defaults it to the shortest path there
 }
 
+
+void drive_example() {
+  chassis.pid_drive_set(24_in, DRIVE_SPEED);
+  chassis.pid_wait();
+}
+
+
 // . . .
 // Make your own autonomous functions here!
 // . . .

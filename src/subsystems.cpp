@@ -11,6 +11,6 @@ ez::Drive chassis(
     450);   // Wheel RPM = cartridge * (motor gear / wheel gear)
 
 
-pros::Motor intake(8);
-pros::Motor scorer(9);
+pros::Motor intake(9);
+pros::Motor scorer(10);
 //pros::adi::Pneumatics wing_mech('A');

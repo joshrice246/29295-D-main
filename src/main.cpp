@@ -60,7 +60,7 @@ void initialize() {
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
-    Auton("drive example", please),
+    Auton("drive example", drive_example),
   });
 
   // Initialize chassis and auton selector
@@ -107,14 +107,6 @@ void competition_initialize() {
  * from where it left off.
  */
 void autonomous() {
-  // DIAGNOSTIC: raw-drive sanity test (temporary)
-  chassis.drive_brake_set(MOTOR_BRAKE_COAST);
-  chassis.drive_set(127, 127); // full forward
-  pros::delay(100);          // run 0.1s
-  chassis.drive_set(0, 0);
-  pros::delay(200);
-
-  // Normal auton after test
   chassis.pid_targets_reset();
   chassis.drive_imu_reset();
   chassis.drive_sensor_reset();
