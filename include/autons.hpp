@@ -2,4 +2,5 @@
 
 void default_constants();
 
-void drive_example();
+void comp_aut();
+void skillz_aut();

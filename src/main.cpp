@@ -1,5 +1,4 @@
 #include "main.h"
-#include "autons.hpp"
 #include "subsystems.hpp"
 
 /////
@@ -57,16 +56,13 @@ void initialize() {
   // These are already defaulted to these buttons, but you can change the left/right curve buttons here!
   // chassis.opcontrol_curve_buttons_left_set(pros::E_CONTROLLER_DIGITAL_LEFT, pros::E_CONTROLLER_DIGITAL_RIGHT);  // If using tank, only the left side is used.
   // chassis.opcontrol_curve_buttons_right_set(pros::E_CONTROLLER_DIGITAL_Y, pros::E_CONTROLLER_DIGITAL_A);
-
-  // Autonomous Selector using LLEMU
-  ez::as::auton_selector.autons_add({
-    Auton("drive example", drive_example),
-  });
-
-  // Initialize chassis and auton selector
   chassis.initialize();
   ez::as::initialize();
   master.rumble(chassis.drive_imu_calibrated() ? "." : "---");
+  // Autonomous Selector using LLEMU
+  ez::as::auton_selector.autons_add({
+    {"Solo AWP\n\nStarting Position: Plat Down", comp_aut}
+  });
 }
 
 /**
