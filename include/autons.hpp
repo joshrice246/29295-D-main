@@ -2,5 +2,6 @@
 
 void default_constants();
 
-void comp_aut();
+void comp_aut_right();
+void comp_aut_left();
 void skillz_aut();

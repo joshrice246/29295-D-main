@@ -58,7 +58,7 @@ void skillz_aut()
   chassis.pid_wait();
 }
 
-void comp_aut()
+void comp_aut_right()
 {
   intake.move(-127);
   chassis.pid_drive_set(24_in, DRIVE_SPEED, false);
@@ -67,6 +67,18 @@ void comp_aut()
 
   scorer.move(-127);
   chassis.pid_turn_set(90_deg, TURN_SPEED, true);
+  chassis.pid_wait();
+  scorer.move(0);
+}
+
+void comp_aut_left() {
+    intake.move(-127);
+  chassis.pid_drive_set(24_in, DRIVE_SPEED, false);
+  chassis.pid_wait();
+  intake.move(0);
+
+  scorer.move(-127);
+  chassis.pid_turn_set(-90_deg, TURN_SPEED, true);
   chassis.pid_wait();
   scorer.move(0);
 }

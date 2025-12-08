@@ -61,7 +61,8 @@ void initialize() {
   master.rumble(chassis.drive_imu_calibrated() ? "." : "---");
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
-    {"Solo AWP\n\nStarting Position: Plat Down", comp_aut}
+    {"Solo AWP\n\nStarting Position: right", comp_aut_right},
+    {"Solo AWP\n\nStarting Position: left", comp_aut_left}
   });
 }
 
