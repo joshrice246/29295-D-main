@@ -254,8 +254,8 @@ void opcontrol() {
       powerC *= 0.75;
     }
 
-    leftDrv = powerC - turnC;
-    rightDrv = powerC + turnC;
+    leftDrv = powerC + turnC;
+    rightDrv = powerC - turnC;
 
     // Arcade Drive, setting the motor velocity
     chassis.drive_set(leftDrv, rightDrv);
