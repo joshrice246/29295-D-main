@@ -62,10 +62,10 @@ void initialize() {
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
     {"Solo AWP\n\nStarting Position: right", comp_aut_right},
-    {"Solo AWP\n\nStarting Position: left", comp_aut_left}
+    //{"Solo AWP\n\nStarting Position: left", comp_aut_left}
   });
 }
-
+ 
 /**
  * Runs while the robot is in the disabled state of Field Management System or
  * the VEX Competition Switch, following either autonomous or opcontrol. When
@@ -228,6 +228,7 @@ double turnC = 0.0;
 bool halfSpeed = false;
 double leftDrv;
 double rightDrv;
+bool matchloaderbool = false;
 
 void opcontrol() {
   // This is preference to what you like to drive on
@@ -297,6 +298,17 @@ void opcontrol() {
     }
     #pragma endregion
     
+    if (master.get_digital_new_press(DIGITAL_B)) {
+      matchloaderbool = !matchloaderbool;
+      ez::screen_print(matchloaderbool ? "Extended" : "Retracted", 1);
+    }
+
+    if (matchloaderbool == true) {
+      Match_loader.extend(); 
+    }
+    else if (matchloaderbool == false) {
+      Match_loader.retract();
+    }
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }

@@ -15,4 +15,4 @@ pros::Motor intake(14);
 pros::Motor scorer(7);
 
 // Pneumatics
-pros::adi::Pneumatics Test('A', false);
+pros::adi::Pneumatics Match_loader('A', false);
