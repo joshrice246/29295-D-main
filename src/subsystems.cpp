@@ -11,8 +11,8 @@ ez::Drive chassis(
     450);   // Wheel RPM = cartridge * (motor gear / wheel gear)
 
 // Extra motors
-pros::Motor intake(4);
+pros::Motor intake(14);
 pros::Motor scorer(7);
 
 // Pneumatics
-   
+pros::adi::Pneumatics Test('A', false);
