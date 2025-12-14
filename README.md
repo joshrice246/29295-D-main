@@ -9,5 +9,9 @@ specs:
 rpm 450, 
 wheel diameter 3.25, 
 gear ratio 36x48
+6 motor drive train 8 total
+1 air tank
+1 piston
+
 
 coded by josh and ewan
