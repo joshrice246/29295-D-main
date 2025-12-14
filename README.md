@@ -5,13 +5,13 @@ this is team 29295 D's main code for vex pushback
 
 feel free to fork or to use as reference 
 
-specs:
+(specs:
 rpm 450, 
 wheel diameter 3.25, 
-gear ratio 36x48
-6 motor drive train 8 total
-1 air tank
-1 piston
+gear ratio 36x48,
+6 motor drive train 8 total,
+1 air tank,
+1 piston)
 
 
 coded by josh and ewan
