@@ -60,7 +60,7 @@ void skillz_aut()
 
 void comp_aut_right() {
   Match_loader.retract();
-  chassis.pid_drive_set(32_in, 57, true);
+  chassis.pid_drive_set(32_in, 45, true);
   intake.move(-127);
   chassis.pid_wait();
   intake.move(0);
@@ -79,7 +79,7 @@ void comp_aut_right() {
   chassis.pid_drive_set(28_in, 127);
   chassis.pid_wait();
   intake.move(-127);
-  pros::delay(1500);
+  pros::delay(2000);
   chassis.pid_drive_set(-32_in, 100);
   chassis.pid_wait();
   scorer.move(-127);
@@ -89,7 +89,7 @@ void comp_aut_right() {
 
 void comp_aut_left() {
   Match_loader.retract();
-  chassis.pid_drive_set(32_in, 57, true);
+  chassis.pid_drive_set(32_in, 45, true);
   intake.move(-127);
   chassis.pid_wait();
   intake.move(0);
@@ -108,10 +108,10 @@ void comp_aut_left() {
   chassis.pid_drive_set(28_in, 127);
   chassis.pid_wait();
   intake.move(-127);
-  pros::delay(1500);
+  pros::delay(2000);
   chassis.pid_drive_set(-32_in, 100);
   chassis.pid_wait();
   scorer.move(-127);
   Match_loader.retract();
-  pros::delay(2000);
+  pros::delay(2000);                   
 }
