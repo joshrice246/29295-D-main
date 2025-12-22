@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "Left_auton",
+    "project_name": "Right_auton",
     "target": "v5",
     "templates": {
       "EZ-Template": {
@@ -426,7 +426,7 @@
     "upload_options": {
       "description": "vroom vroom",
       "icon": "X",
-      "slot": 1
+      "slot": 2
     },
     "use_early_access": false
   }

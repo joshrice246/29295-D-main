@@ -16,3 +16,4 @@ pros::Motor scorer(7);
 
 // Pneumatics
 pros::adi::Pneumatics Match_loader('A', false);
+pros::adi::Pneumatics Descore('B', false);

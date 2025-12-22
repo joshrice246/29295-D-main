@@ -219,16 +219,17 @@ void ez_template_extras() {
 
 // Use the PROS 'master' controller (defined in main.h)
 float pCurve = 0.5;        // curve for fwd/back
-float tCoefficient = 1.4;  // curve for turn
-float tCurve = 0.5;        // coefficient for turn
-double power = 0.0;
-double powerC = 0.0;
-double turn = 0.0;
-double turnC = 0.0;
+float tCoefficient = 1.1;  // curve for turn
+float tCurve = 0.66;        // coefficient for turn
+double power;
+double powerC;
+double turn;
+double turnC;
 bool halfSpeed = false;
 double leftDrv;
 double rightDrv;
 bool matchloaderbool = false;
+bool descoreBool = false;
 
 void opcontrol() {
   // This is preference to what you like to drive on
@@ -244,11 +245,11 @@ void opcontrol() {
     turn = master.get_analog(ANALOG_RIGHT_X);  // Right stick horizontal
 
     // Calculating velocity
-    powerC = ((1 - pCurve) * power) + ((pCurve * pow(power, 3)) / 20736);
+    powerC = ((1 - pCurve) * power) + ((pCurve * pow(power, 3)) / 16129); // don't change 16129
     //https://www.desmos.com/calculator/asjs86sdpy
 
     // Calculating turn curve
-    turnC = tCoefficient * ((1 - tCurve) * turn) + ((tCurve * pow(turn, 3)) / 20736);
+    turnC = tCoefficient * ((1 - tCurve) * turn) + ((tCurve * pow(turn, 3)) / 16129); // don't change 16129
 
     // Setting Halfspeed
     if (halfSpeed) {
@@ -298,15 +299,32 @@ void opcontrol() {
     }
     #pragma endregion
     
-    if (master.get_digital_new_press(DIGITAL_B)) {
-      matchloaderbool = !matchloaderbool;
-      ez::screen_print(matchloaderbool ? "Extended" : "Retracted", 1);
+    if (master.get_digital_new_press(DIGITAL_UP)) {
+      halfSpeed != halfSpeed;
+      ez::screen_print(halfSpeed ? "halfspeen on" : "halfspeed off", 1);
     }
 
-    if (matchloaderbool == true) {
+    if (master.get_digital_new_press(DIGITAL_B)) {
+      matchloaderbool = !matchloaderbool;
+      ez::screen_print(matchloaderbool ? "Matchloader Extended" : "Matchloader Retracted", 1);
+    }
+
+    if (matchloaderbool) {
       Match_loader.extend(); 
     }
-    else if (matchloaderbool == false) {
+    else {
+      Match_loader.retract();
+    }
+
+    if (master.get_digital_new_press(DIGITAL_A)) {
+      descoreBool = !descoreBool;
+      ez::screen_print(descoreBool ? "Descore Extended" : "Descore Retracted", 1);
+    }
+
+    if (matchloaderbool) {
+      Match_loader.extend(); 
+    }
+    else {
       Match_loader.retract();
     }
 
