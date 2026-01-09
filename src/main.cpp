@@ -45,7 +45,7 @@ void initialize() {
   //  - ignore this if you aren't using a vertical tracker
   // chassis.odom_tracker_left_set(&vert_tracker);
 
-  // Configure your chassis controls
+  // Configure your chassis 96
   chassis.opcontrol_curve_buttons_toggle(true);   // Enables modifying the controller curve with buttons on the joysticks
   chassis.opcontrol_drive_activebrake_set(0.0);   // Sets the active brake kP. We recommend ~2.  0 will disable.
   chassis.opcontrol_curve_default_set(0.0, 0.0);  // Defaults for curve. If using tank, only the first parameter is used. (Comment this line out if you have an SD card!)
@@ -61,8 +61,9 @@ void initialize() {
   master.rumble(chassis.drive_imu_calibrated() ? "." : "---");
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
-    {"Solo AWP\n\nStarting Position: right", comp_aut_right},
-    //{"Solo AWP\n\nStarting Position: left", comp_aut_left}
+    //{"Solo AWP\n\nStarting Position: right", comp_aut_right},
+    //{"Solo AWP\n\nStarting Position: left", comp_aut_left},
+    {"Skills AWP\n\nStarting Position: right", skillz_aut}
   });
 }
  
