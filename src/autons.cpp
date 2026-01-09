@@ -64,14 +64,14 @@ void skillz_aut()
   chassis.pid_wait_quick();
   chassis.pid_drive_set(16, DRIVE_SPEED);
   chassis.pid_wait();
-  pros::delay(1000);
+  pros::delay(500);
   chassis.pid_turn_set(98, TURN_SPEED);
   chassis.pid_wait_quick();
   chassis.pid_turn_set(82, TURN_SPEED);
   chassis.pid_wait_quick();
   chassis.pid_turn_set(90, TURN_SPEED);
   chassis.pid_wait_quick();
-  pros::delay(1500);
+  pros::delay(500);
   
   // Traveling to score
   chassis.pid_drive_set(-4, DRIVE_SPEED);
