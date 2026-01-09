@@ -110,8 +110,8 @@ void skillz_aut()
   pros::delay(250);
   chassis.pid_drive_set(12, DRIVE_SPEED);
   chassis.pid_wait_quick_chain();
-  chassis.pid_turn_set(-100, TURN_SPEED);
-  chassis.pid_wait_quick_chain();
+ // chassis.pid_turn_set(-100, TURN_SPEED);
+ // chassis.pid_wait_quick_chain();
   chassis.pid_drive_set(9, DRIVE_SPEED);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(-95, TURN_SPEED);
@@ -182,12 +182,12 @@ void skillz_aut()
   chassis.pid_wait_quick_chain();
   chassis.pid_drive_set(20, DRIVE_SPEED);
   chassis.pid_wait_quick_chain();
+  intake.move(-127);
+  scorer.move(-127);
   chassis.pid_turn_set(25, TURN_SPEED);
   chassis.pid_wait_quick_chain();
   chassis.pid_drive_set(18, 100);
   chassis.pid_wait_quick_chain();  // DOESNT hit i think its running out of time try to find some time savers and the rest is perfect.
-  intake.move(-127);
-  scorer.move(-127);
   chassis.pid_turn_set(4, TURN_SPEED);
   chassis.pid_wait_quick_chain();
   chassis.pid_drive_set(35, DRIVE_SPEED);
