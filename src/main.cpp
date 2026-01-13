@@ -1,21 +1,21 @@
 #include "main.h"
-#include "subsystems.hpp"
+
 
 /////
 // For installation, upgrading, documentations, and tutorials, check out our website!
 // https://ez-robotics.github.io/EZ-Template/
 /////
 
-/*
-ez::Drive chassis(
-     // These are your drive motors, the first motor is used for sensing!
-     {1, 2, 3},     // Left Chassis Ports (negative port will reverse it!)
-     {-4, -5, -6},  // Right Chassis Ports (negative port will reverse it!)
 
-     7,      // IMU Port
-     3.25,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
-     450);   // Wheel RPM = cartridge * (motor gear / wheel gear)
-*/
+ez::Drive chassis(
+    // These are your drive motors, the first motor is used for sensing!
+    {-20, -18, -19},    // Left Chassis Ports (negative port will reverse it!)
+    {8, 9, 10},  // Right Chassis Ports (negative port will reverse it!)
+
+    11,      // IMU Port
+    3.25,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
+    450);   // Wheel RPM = cartridge * (motor gear / wheel gear)
+
 // Uncomment the trackers you're using here!
 // - `8` and `9` are smart ports (making these negative will reverse the sensor)
 //  - you should get positive values on the encoders going FORWARD and RIGHT
@@ -61,9 +61,14 @@ void initialize() {
   master.rumble(chassis.drive_imu_calibrated() ? "." : "---");
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
-    //{"Solo AWP\n\nStarting Position: right", comp_aut_right},
-    //{"Solo AWP\n\nStarting Position: left", comp_aut_left},
-    {"Skills AWP\n\nStarting Position: right", skillz_aut}
+    {"Solo AWP\n\nStarting Position: right", comp_aut_right},
+    {"Solo AWP\n\nStarting Position: left", comp_aut_left},
+    {"Skills AWP\n\nStarting Position: right", skillz_aut},
+    {"Park AWP\n\nStarting Position: right", One_Forwards},
+    {"Test AWP\n\nStarting Position: slew diff test", Drive_Slewdiff_Test},
+    {"Test AWP\n\nStarting Position: turn slew diff test", Turn_Slewdiff_Test},
+    {"Test AWP\n\nStarting Position: odom test", Odom_Point_Distance_Test},
+    {"Test AWP\n\nStarting Position: odom passpoints test", Odom_Slew_Test_And_Passpoints},
   });
 }
  
@@ -229,8 +234,6 @@ double turnC;
 bool halfSpeed = false;
 double leftDrv;
 double rightDrv;
-bool matchloaderbool = false;
-bool descoreBool = false;
 
 void opcontrol() {
   // This is preference to what you like to drive on
@@ -240,93 +243,17 @@ void opcontrol() {
     // Gives you some extras to make EZ-Template ezier
     ez_template_extras();
 
-    #pragma region DriveTrain
-    // Setting power and turn variables
-    power = master.get_analog(ANALOG_LEFT_Y);  // Left stick vertical
-    turn = master.get_analog(ANALOG_RIGHT_X);  // Right stick horizontal
-
-    // Calculating velocity
-    powerC = ((1 - pCurve) * power) + ((pCurve * pow(power, 3)) / 16129); // don't change 16129
-    //https://www.desmos.com/calculator/asjs86sdpy
-
-    // Calculating turn curve
-    turnC = tCoefficient * ((1 - tCurve) * turn) + ((tCurve * pow(turn, 3)) / 16129); // don't change 16129
-
-    // Setting Halfspeed
-    if (halfSpeed) {
-      powerC *= 0.75;
-    }
-
-    leftDrv = powerC + turnC;
-    rightDrv = powerC - turnC;
-
-    // Arcade Drive, setting the motor velocity
-    chassis.drive_set(leftDrv, rightDrv);
-  #pragma endregion
-
-    #pragma region Intake
-    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
-      intake.move(127);
-    }
-    else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
-      intake.move(-127);
-    }
-    else {
-      double speed = intake.get_actual_velocity();
-      if (speed > 5 || speed < -5){
-        intake.move(-speed * 0.1);
-      }
-      else {
-        intake.move(0);
-      }
-    }
-    #pragma endregion
-
-    #pragma region Scorer
-    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-      scorer.move(127);
-    }
-    else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-      scorer.move(-127);
-    }
-    else {
-      double speed = scorer.get_actual_velocity();
-      if (speed > 5 || speed < -5){
-        scorer.move(-speed * 0.1);
-      }
-      else {
-        scorer.move(0);
-      }
-    }
-    #pragma endregion
+    intake_opcontrol();
+    matchloader_opcontrol();
+    descore_toggle();
+    drivetrain(pCurve, tCoefficient, tCurve, power, powerC, turn, turnC, leftDrv, rightDrv);
     
-    if (master.get_digital_new_press(DIGITAL_UP)) {
-      halfSpeed != halfSpeed;
-      ez::screen_print(halfSpeed ? "halfspeen on" : "halfspeed off", 1);
-    }
-
     if (master.get_digital_new_press(DIGITAL_B)) {
-      matchloaderbool = !matchloaderbool;
-      ez::screen_print(matchloaderbool ? "Matchloader Extended" : "Matchloader Retracted", 1);
-    }
-
-    if (matchloaderbool) {
-      Match_loader.extend(); 
-    }
-    else {
-      Match_loader.retract();
+      matchloader_toggle();
     }
 
     if (master.get_digital_new_press(DIGITAL_A)) {
-      descoreBool = !descoreBool;
-      ez::screen_print(descoreBool ? "Descore Extended" : "Descore Retracted", 1);
-    }
-
-    if (matchloaderbool) {
-      Match_loader.extend(); 
-    }
-    else {
-      Match_loader.retract();
+      descore_toggle();
     }
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME

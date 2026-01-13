@@ -21,7 +21,7 @@
  * @section getting_started Getting Started
  * Not sure where to start? Take a look at the
  * [Getting Started](docs/tutorials/walkthrough/gettingStarted.md) tutorial.
- * Once you have OkapiLib set up, check out the
+ * Once you have OkapiLib set up, check ODOM_SPEEDODOM_SPEEDout the
  * [Clawbot](docs/tutorials/walkthrough/clawbot.md) tutorial.
  *
  * @section using_docs Using The Documentation

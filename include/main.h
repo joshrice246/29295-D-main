@@ -45,6 +45,10 @@
 
 // More includes here...
 #include "autons.hpp"
+#include "subsystems/descore.hpp"
+#include "subsystems/drivetrain.hpp"
+#include "subsystems/matchloader.hpp"
+#include "subsystems/intake.hpp"
 #include "subsystems.hpp"
 
 
