@@ -296,7 +296,7 @@ void comp_aut_left() {
 }
 
 void One_Forwards() {
-  chassis.pid_drive_set(12, DRIVE_SPEED);
+  chassis.pid_drive_set(96, DRIVE_SPEED);
   chassis.pid_wait();
 }
 
@@ -339,9 +339,9 @@ void Odom_Point_Distance_Test() {
 }
 
 void Odom_Slew_Test_And_Passpoints() {
-  chassis.pid_odom_set({{{-8, 12}, fwd, ODOM_SPEED},
-                        {{8, 24}, fwd, ODOM_SPEED},
-                        {{0, 0, 0}, fwd, ODOM_SPEED}}
+  chassis.pid_odom_set({{{-12, 24, -90}, fwd, ODOM_SPEED},
+                        {{12, 48, 90}, fwd, ODOM_SPEED},
+                        {{0, 0, 180}, fwd, ODOM_SPEED}}
                         , true);
   chassis.pid_wait();
 
