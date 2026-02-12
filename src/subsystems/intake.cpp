@@ -2,7 +2,7 @@
 #include "subsystems.hpp"
 
 void set_intake(int power) {
-    intake.move(power);
+  intake.move(power);
 }
 
 void intake_opcontrol() {

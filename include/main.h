@@ -49,6 +49,7 @@
 #include "subsystems/drivetrain.hpp"
 #include "subsystems/matchloader.hpp"
 #include "subsystems/intake.hpp"
+#include "subsystems/topRoller.hpp"
 #include "subsystems.hpp"
 
 

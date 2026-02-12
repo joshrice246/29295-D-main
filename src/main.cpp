@@ -244,6 +244,7 @@ void opcontrol() {
     ez_template_extras();
 
     intake_opcontrol();
+    topRoller_opcontrol();
     matchloader_opcontrol();
     descore_toggle();
     drivetrain(pCurve, tCoefficient, tCurve, power, powerC, turn, turnC, leftDrv, rightDrv);
