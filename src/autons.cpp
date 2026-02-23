@@ -349,6 +349,3 @@ void Odom_Slew_Test_And_Passpoints() {
   chassis.pid_wait();
 }
 
-void match_aut() {
-  
-}
