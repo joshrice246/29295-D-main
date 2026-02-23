@@ -389,17 +389,7 @@ class Drive {
   /**
    * Creates a Drive Controller using internal encoders.
    *
-   * \param left_motor_ports
-   *        input {1, -2...}. make ports negative if reversed
-   * \param right_motor_ports
-   *        input {-3, 4...}. make ports negative if reversed
-   * \param imu_port
-   *        port the IMU is plugged into
-   * \param wheel_diameter
-   *        diameter of your drive wheels
-   * \param ticks
-   *        motor cartridge RPM
-   * \param ratio
+   * 
    *        external gear ratio, wheel gear / motor gear
    */
   Drive(std::vector<int> left_motor_ports, std::vector<int> right_motor_ports, int imu_port, double wheel_diameter, double ticks, double ratio = 1.0);

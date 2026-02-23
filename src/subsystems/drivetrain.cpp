@@ -1,5 +1,4 @@
 #include "main.h"
-#include "subsystems.hpp"
 
 void drivetrain(float pCurve, float tCoefficient, float tCurve, double power, double powerC, double turn, double turnC, 
     double leftDrv, double rightDrv) {
