@@ -2,6 +2,6 @@
 #include "EZ-Template/api.hpp"
 #include "api.h"
 
-inline pros::Motor intake(-3);
+inline pros::Motor intake(-4);
 extern void set_intake(int power);
 extern void intake_opcontrol();

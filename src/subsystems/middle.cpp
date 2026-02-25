@@ -2,16 +2,16 @@
 
 static bool mid_goal_toggle_bool;
 
-void matchloader_toggle() {
+void mid_goal_toggle() {
     mid_goal_toggle_bool = !mid_goal_toggle_bool;
     ez::screen_print(mid_goal_toggle_bool ? "Matchloader Extended" : "Matchloader Retracted", 2);
 }
 
-void matchloader_opcontrol() {
+void mid_goal_opcontrol() {
     if (mid_goal_toggle_bool) {
-      Match_loader.extend(); 
+      mid_Goal.extend(); 
     }
     else {
-      Match_loader.retract();
+      mid_Goal.retract();
     }
 }

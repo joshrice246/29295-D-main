@@ -48,6 +48,7 @@
 #include "subsystems/descore.hpp"
 #include "subsystems/drivetrain.hpp"
 #include "subsystems/matchloader.hpp"
+#include "subsystems/middle.hpp"
 #include "subsystems/intake.hpp"
 #include "subsystems/topRoller.hpp"
 

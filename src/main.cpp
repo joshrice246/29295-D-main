@@ -245,6 +245,7 @@ void opcontrol() {
 
     intake_opcontrol();
     topRoller_opcontrol();
+    mid_goal_opcontrol();
     matchloader_opcontrol();
     descore_toggle();
     drivetrain(pCurve, tCoefficient, tCurve, power, powerC, turn, turnC, leftDrv, rightDrv);
@@ -255,6 +256,10 @@ void opcontrol() {
 
     if (master.get_digital_new_press(DIGITAL_A)) {
       descore_toggle();
+    }
+    
+    if (master.get_digital_new_press(DIGITAL_Y)) {
+      mid_goal_toggle;
     }
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
