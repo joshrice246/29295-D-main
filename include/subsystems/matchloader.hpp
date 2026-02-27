@@ -2,6 +2,5 @@
 #include "EZ-Template/api.hpp"
 #include "api.h"
 
-inline pros::adi::Pneumatics Match_loader('A', false);
-extern void matchloader_toggle();
+inline pros::adi::Pneumatics temporaryremovalwithoutbreakingit('A', true);
 extern void matchloader_opcontrol();

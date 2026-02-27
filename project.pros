@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "Test_auton",
+    "project_name": "match_aut_left",
     "target": "v5",
     "templates": {
       "EZ-Template": {
@@ -425,8 +425,8 @@
     },
     "upload_options": {
       "description": "vroom vroom",
-      "icon": "planet",
-      "slot": 5
+      "icon": "X",
+      "slot": 1
     },
     "use_early_access": false
   }

@@ -9,9 +9,9 @@ void descore_toggle() {
 
 void descore_opcontrol() {
     if (descore_toggle_bool) {
-      Match_loader.extend(); 
+      Descore.extend(); 
     }
     else {
-      Match_loader.retract();
+      Descore.retract();
     }
 }

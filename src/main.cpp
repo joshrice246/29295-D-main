@@ -9,10 +9,10 @@
 
 ez::Drive chassis(
     // These are your drive motors, the first motor is used for sensing!
-    {-20, -18, -19},    // Left Chassis Ports (negative port will reverse it!)
-    {8, 9, 10},  // Right Chassis Ports (negative port will reverse it!)
+    {-18, -20, -19},    // Left Chassis Ports (negative port will reverse it!)
+    {3, 2, 4},  // Right Chassis Ports (negative port will reverse it!)
 
-    11,      // IMU Port
+    21,      // IMU Port
     3.25,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
     450);   // Wheel RPM = cartridge * (motor gear / wheel gear)
 
@@ -61,14 +61,14 @@ void initialize() {
   master.rumble(chassis.drive_imu_calibrated() ? "." : "---");
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
-    {"Solo AWP\n\nStarting Position: right", comp_aut_right},
-    {"Solo AWP\n\nStarting Position: left", comp_aut_left},
-    {"Skills AWP\n\nStarting Position: right", skillz_aut},
-    {"Park AWP\n\nStarting Position: right", One_Forwards},
-    {"Test AWP\n\nStarting Position: slew diff test", Drive_Slewdiff_Test},
-    {"Test AWP\n\nStarting Position: turn slew diff test", Turn_Slewdiff_Test},
-    {"Test AWP\n\nStarting Position: odom test", Odom_Point_Distance_Test},
-    {"Test AWP\n\nStarting Position: odom passpoints test", Odom_Slew_Test_And_Passpoints},
+    //{"Solo AWP\n\nStarting Position: right", comp_aut_right}
+    {"Solo AWP\n\nStarting Position: left", comp_aut_left}
+    //{"Skills AWP\n\nStarting Position: right", skillz_aut}
+    //{"Park AWP\n\nStarting Position: right", One_Forwards}
+    //{"Test AWP\n\nStarting Position: slew diff test", Drive_Slewdiff_Test}
+    //{"Test AWP\n\nStarting Position: turn slew diff test", Turn_Slewdiff_Test}
+    //{"Test AWP\n\nStarting Position: odom test", Odom_Point_Distance_Test}
+    //{"Test AWP\n\nStarting Position: odom passpoints test", Odom_Slew_Test_And_Passpoints}
   });
 }
  
@@ -247,19 +247,19 @@ void opcontrol() {
     topRoller_opcontrol();
     mid_goal_opcontrol();
     matchloader_opcontrol();
-    descore_toggle();
+    descore_opcontrol();
     drivetrain(pCurve, tCoefficient, tCurve, power, powerC, turn, turnC, leftDrv, rightDrv);
     
-    if (master.get_digital_new_press(DIGITAL_B)) {
+    if (master.get_digital_new_press(DIGITAL_A)) {
       matchloader_toggle();
     }
 
-    if (master.get_digital_new_press(DIGITAL_A)) {
+    if (master.get_digital_new_press(DIGITAL_B)) {
       descore_toggle();
     }
     
     if (master.get_digital_new_press(DIGITAL_Y)) {
-      mid_goal_toggle;
+      matchloader_toggle();
     }
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME

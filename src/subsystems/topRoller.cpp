@@ -7,10 +7,10 @@ void set_topRoller(int power) {
 
 void topRoller_opcontrol() {
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-      set_topRoller(127);
+      set_topRoller(-127);
     }
     else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-      set_topRoller(-127);
+      set_topRoller(127);
     }
     else {
       double speed = topRoller.get_actual_velocity();
