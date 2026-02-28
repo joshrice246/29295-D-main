@@ -250,11 +250,11 @@ void opcontrol() {
     descore_opcontrol();
     drivetrain(pCurve, tCoefficient, tCurve, power, powerC, turn, turnC, leftDrv, rightDrv);
     
-    if (master.get_digital_new_press(DIGITAL_A)) {
+    if (master.get_digital_new_press(DIGITAL_B)) {
       matchloader_toggle();
     }
 
-    if (master.get_digital_new_press(DIGITAL_B)) {
+    if (master.get_digital_new_press(DIGITAL_A)) {
       descore_toggle();
     }
     
