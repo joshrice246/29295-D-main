@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "match_aut_left",
+    "project_name": "match_auton_skillz",
     "target": "v5",
     "templates": {
       "EZ-Template": {
@@ -426,7 +426,7 @@
     "upload_options": {
       "description": "vroom vroom",
       "icon": "X",
-      "slot": 1
+      "slot": 4
     },
     "use_early_access": false
   }

@@ -62,8 +62,8 @@ void initialize() {
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
     //{"Solo AWP\n\nStarting Position: right", comp_aut_right}
-    {"Solo AWP\n\nStarting Position: left", comp_aut_left}
-    //{"Skills AWP\n\nStarting Position: right", skillz_aut}
+    //{"Solo AWP\n\nStarting Position: left", comp_aut_left}
+    {"Skills AWP\n\nStarting Position: right", skillz_aut}
     //{"Park AWP\n\nStarting Position: right", One_Forwards}
     //{"Test AWP\n\nStarting Position: slew diff test", Drive_Slewdiff_Test}
     //{"Test AWP\n\nStarting Position: turn slew diff test", Turn_Slewdiff_Test}
